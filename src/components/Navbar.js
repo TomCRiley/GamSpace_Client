@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 
+// import useStyles from '../styles/styles.js';
+
 // import { hatWizard } from '../assets/icons/hat-wizard.svg';
 import FaceTwoToneIcon from '@mui/icons-material/FaceTwoTone';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -24,6 +26,8 @@ const pages = ['Home', 'Channels', 'About'];
 const settings = ['Profile', 'Logout'];
 
 const Navbar = () => {
+  // const classes = useStyles();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -45,7 +49,10 @@ const Navbar = () => {
   return (
     <AppBar position='static'>
       <Container maxWidth='xl'>
-        <Toolbar disableGutters sx={{ palette: { primary: 'green' } }}>
+        <Toolbar
+        // className={classes.toolBar}
+        // sx={{ palette: { primary: 'green' } }}
+        >
           <Typography
             variant='h6'
             noWrap
