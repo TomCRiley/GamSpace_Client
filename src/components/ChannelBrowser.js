@@ -1,5 +1,6 @@
 import React from 'react';
 import { getChannels } from '../api/channels.js';
+import { useNavigate } from 'react-router-dom';
 
 const ChannelBrowser = () => {
   const [channels, setChannels] = React.useState([]);
