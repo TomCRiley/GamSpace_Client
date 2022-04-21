@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Navbar from './Navbar';
+import ResponsiveAppBar from './Navbar';
 import Home from './Home';
 import '../styles/output.css';
 
 const App = () => (
   <BrowserRouter>
-    <Navbar />
+    <ResponsiveAppBar />
     <Routes>
       <Route
         path='/'
