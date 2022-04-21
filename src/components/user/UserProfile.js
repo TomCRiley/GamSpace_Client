@@ -1,5 +1,5 @@
 import React from 'react';
-import { allUserPosts } from '../../api/auth.js';
+import { allUserPosts } from '../../api/auth_api.js';
 import { useNavigate } from 'react-router-dom';
 
 const UserProfile = () => {

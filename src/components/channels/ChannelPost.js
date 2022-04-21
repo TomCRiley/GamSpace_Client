@@ -1,5 +1,5 @@
 import React from 'react';
-import { allChannelPosts } from '../api/channels.js';
+import { allChannelPosts } from '../../api/channels_api.js';
 
 // cant get endpoint to work - think i need authorization token
 const Post = () => {

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Grid, Paper, Box } from '@mui/material';
 
-import { allChannelPosts } from '../api/channels';
+import { allChannelPosts } from '../../api/channels_api.js';
 
 const Channel = () => {
   const Item = styled(Paper)(({ theme }) => ({
