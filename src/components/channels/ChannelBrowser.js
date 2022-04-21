@@ -1,5 +1,5 @@
 import React from 'react';
-import { getChannels } from '../api/channels.js';
+import { getChannels } from '../../api/channels_api';
 import { useNavigate } from 'react-router-dom';
 
 const ChannelBrowser = () => {

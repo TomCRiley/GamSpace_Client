@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 // import useStyles from '../styles/styles.js';
 
 // import { hatWizard } from '../assets/icons/hat-wizard.svg';
@@ -27,6 +27,7 @@ const settings = ['Profile', 'Logout'];
 
 const Navbar = () => {
   // const classes = useStyles();
+  // const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);

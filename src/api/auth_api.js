@@ -2,8 +2,8 @@ import axios from 'axios';
 
 const baseurl = 'http://localhost:8000';
 
-export const register = async();
-// no idea where to start
+// export const register = async();
+// no idea where to start with register
 
 export const userLogin = async (credentials) => {
   const options = {
