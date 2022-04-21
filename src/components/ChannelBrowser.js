@@ -1,5 +1,5 @@
 import React from 'react';
-import getChannels from '../api/channels.js';
+import { getChannels } from '../api/channels.js';
 
 const ChannelBrowser = () => {
   const [channels, setChannels] = React.useState([]);

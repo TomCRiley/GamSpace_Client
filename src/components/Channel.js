@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Grid, Paper, Box } from '@mui/material';
 
+import { allChannelPosts } from '../api/channels';
+
 const Channel = () => {
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -14,6 +16,17 @@ const Channel = () => {
     color: theme.palette.text.secondary,
   }));
 
+  const [allPosts, setAllPosts] = React.useState([]);
+
+  React.useEffect(() => {
+    const getData = async () => {
+      const allPosts = await allChannelPosts(channelName);
+      setAllPosts(allPosts);
+    };
+
+    getData();
+  }, []);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
@@ -21,7 +34,9 @@ const Channel = () => {
           <Item>Small Dialogue Area</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>Channel Cards</Item>
+          <Item>
+            {/* <div>{allPosts ? <p>{`${allPosts.Channel}`}</p> : null}</div> GET ALL POSTS ONE CHANNEL*/}
+          </Item>
         </Grid>
         <Grid item xs={4}>
           <Item>xs=4</Item>
