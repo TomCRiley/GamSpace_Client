@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-// import { Container, Grid } from '@mui/material';
-// import { styled } from '@mui/system';
+// import { hatWizard } from '../assets/icons/hat-wizard.svg';
+import FaceTwoToneIcon from '@mui/icons-material/FaceTwoTone';
 import MenuIcon from '@mui/icons-material/Menu';
+
 import {
   AppBar,
   Box,
@@ -20,10 +20,10 @@ import {
   MenuItem,
 } from '@mui/material';
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = ['Home', 'Channels', 'About'];
+const settings = ['Profile', 'Logout'];
 
-const ResponsiveAppBar = () => {
+const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -45,14 +45,18 @@ const ResponsiveAppBar = () => {
   return (
     <AppBar position='static'>
       <Container maxWidth='xl'>
-        <Toolbar disableGutters>
+        <Toolbar disableGutters sx={{ palette: { primary: 'green' } }}>
           <Typography
             variant='h6'
             noWrap
             component='div'
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              typography: { fontStyle: 'italic' },
+            }}
           >
-            LOGO
+            GameSpace
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -97,7 +101,7 @@ const ResponsiveAppBar = () => {
             component='div'
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
           >
-            LOGO
+            GameSpace
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -113,8 +117,12 @@ const ResponsiveAppBar = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title='Open settings'>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt='Remy Sharp' src='/static/images/avatar/2.jpg' />
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
+                {/* <Avatar
+                  alt='Profile Picture'
+                  src='./assets/icons/hat-wizard.svg'
+                /> */}
+                <FaceTwoToneIcon />
               </IconButton>
             </Tooltip>
             <Menu
@@ -146,12 +154,4 @@ const ResponsiveAppBar = () => {
   );
 };
 
-export default ResponsiveAppBar;
-
-// const FirstButton = styled('button')({
-//   backgroundColor: 'aliceblue',
-//   color: 'darkslategrey',
-//   padding: 25,
-//   margin: 25,
-//   borderRadius: 15,
-// })
+export default Navbar;
