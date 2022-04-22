@@ -10,7 +10,7 @@ import Channel from '../components/channels/Channel';
 import Login from '../components/user/Login';
 import Register from '../components/user/Register';
 import UserProfile from '../components/user/UserProfile';
-import Footer from './Footer';
+// import Footer from '../components/Footer';
 
 const App = () => (
   <BrowserRouter>
@@ -23,7 +23,7 @@ const App = () => (
       <Route path='/login' element={<Login />} />
       <Route path='/profile' element={<UserProfile />} />
     </Routes>
-    <Footer />
+    {/* <Footer /> */}
   </BrowserRouter>
 );
 
