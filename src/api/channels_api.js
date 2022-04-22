@@ -36,3 +36,21 @@ export const allChannelPosts = async (channelid) => {
 
   const { data } = await axios.request(options);
 };
+
+export const getChannel = async (channelid) => {
+  const options = {
+    method: 'GET',
+    url: `${baseurl}/channel/${channelid}`,
+  };
+
+  const { data } = await axios.request(options);
+};
+
+export const getChannelByName = async (urlName) => {
+  const options = {
+    method: 'GET',
+    url: `${baseurl}/channel/${urlName}`,
+  };
+
+  const { data } = await axios.request(options);
+};

@@ -18,7 +18,7 @@ const App = () => (
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='/channelbrowser' element={<ChannelBrowser />} />
-      <Route path='/channel' element={<Channel />} />
+      <Route path='/channel:urlName' element={<Channel />} />
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
       <Route path='/profile' element={<UserProfile />} />

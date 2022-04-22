@@ -1,0 +1,12 @@
+{
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "start:client",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: start",
+      "detail": "react-scripts start"
+    }
+  ]
+}

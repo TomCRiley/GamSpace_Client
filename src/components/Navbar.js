@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 // import { hatWizard } from '../assets/icons/hat-wizard.svg';
 import FaceTwoToneIcon from '@mui/icons-material/FaceTwoTone';
 import MenuIcon from '@mui/icons-material/Menu';
+import { getUserProfile } from '../api/auth_api';
 
 import {
   AppBar,
@@ -22,12 +23,29 @@ import {
   MenuItem,
 } from '@mui/material';
 
-const pages = ['Home', 'Channels', 'About'];
-const settings = ['Profile', 'Logout'];
+const pages = [
+  { title: 'Home', path: '' },
+  { title: 'Channels', path: 'channelbrowser' },
+  { title: 'About', path: 'about' },
+];
+const settings = [
+  { title: 'Profile', path: 'profile' },
+  { title: 'Logout', path: 'logout' },
+];
 
 const Navbar = () => {
-  // const classes = useStyles();
-  // const navigate = useNavigate();
+  const [user, setUser] = React.useState({});
+
+  React.useEffect(() => {
+    const getData = async () => {
+      const userDb = await getUserProfile();
+      if (userDb) {
+        setUser(userDb);
+      }
+    };
+
+    getData();
+  }, []);
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -37,6 +55,20 @@ const Navbar = () => {
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
+  };
+
+  const handleNavigate = (page) => {
+    handleCloseNavMenu();
+    window.location.assign(
+      window.location.protocol + '//' + window.location.host + '/' + page
+    );
+  };
+
+  const handleUserNavigate = (setting) => {
+    handleCloseUserMenu();
+    window.location.assign(
+      window.location.protocol + '//' + window.location.host + '/' + setting
+    );
   };
 
   const handleCloseNavMenu = () => {
@@ -97,8 +129,13 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign='center'>{page}</Typography>
+                <MenuItem
+                  key={page.title}
+                  onClick={() => {
+                    handleNavigate(page.path);
+                  }}
+                >
+                  <Typography textAlign='center'>{page.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -114,11 +151,13 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.title}
+                onClick={() => {
+                  handleNavigate(page.path);
+                }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.title}
               </Button>
             ))}
           </Box>
@@ -126,11 +165,14 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title='Open settings'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
-                {/* <Avatar
-                  alt='Profile Picture'
-                  src='./assets/icons/hat-wizard.svg'
-                /> */}
-                <FaceTwoToneIcon />
+                {user ? (
+                  <Avatar
+                    alt='Profile Picture'
+                    src={'https://mui.com/static/images/avatar/1.jpg'}
+                  />
+                ) : (
+                  <FaceTwoToneIcon />
+                )}
               </IconButton>
             </Tooltip>
             <Menu
@@ -150,8 +192,13 @@ const Navbar = () => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign='center'>{setting}</Typography>
+                <MenuItem
+                  key={setting.title}
+                  onClick={() => {
+                    handleUserNavigate(setting.path);
+                  }}
+                >
+                  <Typography textAlign='center'>{setting.title}</Typography>
                 </MenuItem>
               ))}
             </Menu>

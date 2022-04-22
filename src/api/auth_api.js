@@ -31,3 +31,15 @@ export const allUserPosts = async (userid) => {
 
   const { data } = await axios.request(options);
 };
+
+export const getUserProfile = async () => {
+  const options = {
+    method: 'GET',
+    url: `${baseurl}/authentication/credentials/`,
+    headers: {
+      authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
+    },
+  };
+
+  const { data } = await axios.request(options);
+};
