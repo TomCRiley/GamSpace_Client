@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { styled, makeStyles } from '@mui/material/styles';
+import { makeStyles } from '@mui/styles';
 import { Grid, Paper, Box, Typography } from '@mui/material';
 
 import { allChannelPosts, getChannel } from '../../api/channels_api.js';

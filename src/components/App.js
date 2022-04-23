@@ -11,19 +11,24 @@ import Login from '../components/user/Login';
 import Register from '../components/user/Register';
 import UserProfile from '../components/user/UserProfile';
 // import Footer from '../components/Footer';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme();
 
 const App = () => (
   <BrowserRouter>
-    <Navbar />
-    <Routes>
-      <Route path='/' element={<Home />} />
-      <Route path='/channelbrowser' element={<ChannelBrowser />} />
-      <Route path='/channel:urlName' element={<Channel />} />
-      <Route path='/register' element={<Register />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/profile' element={<UserProfile />} />
-    </Routes>
-    {/* <Footer /> */}
+    <ThemeProvider theme={theme}>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/channelbrowser' element={<ChannelBrowser />} />
+        <Route path='/channel:urlName' element={<Channel />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/profile' element={<UserProfile />} />
+      </Routes>
+      {/* <Footer /> */}
+    </ThemeProvider>
   </BrowserRouter>
 );
 
