@@ -3,7 +3,16 @@ import axios from 'axios';
 const baseurl = 'http://localhost:8000';
 
 // export const register = async();
-// no idea where to start with register
+export const registerUser = async (user) => {
+  const options = {
+    method: 'POST',
+    url: `${baseurl}/authentication/register/`,
+    data: user,
+  };
+  const response = await axios.request(options);
+
+  return response;
+};
 
 export const userLogin = async (credentials) => {
   const options = {

@@ -28,13 +28,10 @@ const pages = [
   { title: 'Channels', path: 'channelbrowser' },
   { title: 'About', path: 'about' },
 ];
-const settings = [
-  { title: 'Profile', path: 'profile' },
-  { title: 'Logout', path: 'logout' },
-];
 
 const Navbar = () => {
   const [user, setUser] = React.useState({});
+  const navigate = useNavigate();
 
   React.useEffect(() => {
     const getData = async () => {
@@ -77,6 +74,11 @@ const Navbar = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
+    window.sessionStorage.removeItem('token');
+    navigate('/login', { replace: true });
   };
 
   return (
@@ -191,16 +193,36 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
+              {user && (
+                <>
+                  <MenuItem
+                    key='register'
+                    onClick={() => {
+                      handleUserNavigate('/register');
+                    }}
+                  >
+                    <Typography textAlign='center'>Register</Typography>
+                  </MenuItem>
+                  <MenuItem
+                    key='logout'
+                    onClick={() => {
+                      handleLogout();
+                    }}
+                  >
+                    <Typography textAlign='center'>Logout</Typography>
+                  </MenuItem>
+                </>
+              )}
+              {!user && (
                 <MenuItem
-                  key={setting.title}
+                  key='login'
                   onClick={() => {
-                    handleUserNavigate(setting.path);
+                    handleUserNavigate('/login');
                   }}
                 >
-                  <Typography textAlign='center'>{setting.title}</Typography>
+                  <Typography textAlign='center'>Login</Typography>
                 </MenuItem>
-              ))}
+              )}
             </Menu>
           </Box>
         </Toolbar>
