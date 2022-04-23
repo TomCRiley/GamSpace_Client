@@ -39,6 +39,7 @@ export const allUserPosts = async (userid) => {
   };
 
   const { data } = await axios.request(options);
+  return data;
 };
 
 export const getUserProfile = async () => {
@@ -51,4 +52,5 @@ export const getUserProfile = async () => {
   };
 
   const { data } = await axios.request(options);
+  return data;
 };

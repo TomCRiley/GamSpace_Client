@@ -23,15 +23,9 @@ import {
   MenuItem,
 } from '@mui/material';
 
-const pages = [
-  { title: 'Home', path: '' },
-  { title: 'Channels', path: 'channelbrowser' },
-  { title: 'About', path: 'about' },
-];
-
 const Navbar = () => {
-  const [user, setUser] = React.useState({});
   const navigate = useNavigate();
+  const [user, setUser] = React.useState();
 
   React.useEffect(() => {
     const getData = async () => {
@@ -47,18 +41,20 @@ const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
   };
 
-  const handleNavigate = (page) => {
-    handleCloseNavMenu();
-    window.location.assign(
-      window.location.protocol + '//' + window.location.host + '/' + page
-    );
+  const navigateRegister = () => {
+    handleUserNavigate('register');
+  };
+
+  const navigateLogin = () => {
+    handleUserNavigate('login');
+  };
+
+  const navigateProfile = () => {
+    handleUserNavigate('profile');
   };
 
   const handleUserNavigate = (setting) => {
@@ -72,13 +68,51 @@ const Navbar = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   const handleLogout = () => {
     window.sessionStorage.removeItem('token');
-    navigate('/login', { replace: true });
+    setUser();
+    navigate('login', { replace: true });
+  };
+
+  const pages = [
+    { title: 'Home', path: '' },
+    { title: 'Channels', path: 'channelbrowser' },
+    { title: 'About', path: 'about' },
+  ];
+  const settings = [
+    {
+      title: 'Profile',
+      path: 'profile',
+      func: navigateProfile,
+      loggedIn: true,
+    },
+    { title: 'Logout', path: 'logout', func: handleLogout, loggedIn: true },
+    {
+      title: 'Register',
+      path: 'register',
+      func: navigateRegister,
+      loggedIn: false,
+    },
+    {
+      title: 'Login',
+      path: 'login',
+      func: navigateLogin,
+      loggedIn: false,
+    },
+  ];
+
+  const handleOpenNavMenu = (event) => {
+    setAnchorElNav(event.currentTarget);
+  };
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleNavigate = (page) => {
+    handleCloseNavMenu();
+    window.location.assign(
+      window.location.protocol + '//' + window.location.host + '/' + page
+    );
   };
 
   return (
@@ -193,36 +227,32 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {user && (
-                <>
-                  <MenuItem
-                    key='register'
-                    onClick={() => {
-                      handleUserNavigate('/register');
-                    }}
-                  >
-                    <Typography textAlign='center'>Register</Typography>
-                  </MenuItem>
-                  <MenuItem
-                    key='logout'
-                    onClick={() => {
-                      handleLogout();
-                    }}
-                  >
-                    <Typography textAlign='center'>Logout</Typography>
-                  </MenuItem>
-                </>
-              )}
-              {!user && (
-                <MenuItem
-                  key='login'
-                  onClick={() => {
-                    handleUserNavigate('/login');
-                  }}
-                >
-                  <Typography textAlign='center'>Login</Typography>
-                </MenuItem>
-              )}
+              {user &&
+                settings
+                  .filter((f) => f.loggedIn === true)
+                  .map((setting) => (
+                    <MenuItem
+                      key={setting.title}
+                      onClick={() => setting.func()}
+                    >
+                      <Typography textAlign='center'>
+                        {setting.title}
+                      </Typography>
+                    </MenuItem>
+                  ))}
+              {!user &&
+                settings
+                  .filter((f) => f.loggedIn === false)
+                  .map((setting) => (
+                    <MenuItem
+                      key={setting.title}
+                      onClick={() => setting.func()}
+                    >
+                      <Typography textAlign='center'>
+                        {setting.title}
+                      </Typography>
+                    </MenuItem>
+                  ))}
             </Menu>
           </Box>
         </Toolbar>
