@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { styled } from '@mui/material/styles';
 import { Grid, Paper, Box } from '@mui/material';
+import { getChannels } from '../api/channels_api';
+import ChannelList from '../components/channels/ChannelList';
 
 const home = () => {
   const Item = styled(Paper)(({ theme }) => ({
@@ -14,6 +15,17 @@ const home = () => {
     color: theme.palette.text.secondary,
   }));
 
+  const [channels, setChannels] = useState([]);
+
+  React.useEffect(() => {
+    const getData = async () => {
+      const channels = await getChannels();
+      setChannels(channels);
+    };
+
+    getData();
+  }, []);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={2}>
@@ -21,7 +33,7 @@ const home = () => {
           <Item>Small Dialogue Area</Item>
         </Grid>
         <Grid item xs={6}>
-          <Item>Channel Cards</Item>
+          <ChannelList channels={channels} />
         </Grid>
         <Grid item xs={4}>
           <Item>xs=4</Item>

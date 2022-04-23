@@ -1,6 +1,8 @@
 import React from 'react';
 import { getChannels } from '../../api/channels_api';
 import { useNavigate } from 'react-router-dom';
+import ChannelList from './ChannelList';
+import { Container, Paper } from '@mui/material';
 
 const ChannelBrowser = () => {
   const [channels, setChannels] = React.useState([]);
@@ -15,36 +17,19 @@ const ChannelBrowser = () => {
   }, []);
 
   return (
-    <div>
-      <div>ChannelBrowser</div>
-      <br />
-      <h1>channel names</h1>
-      {!channels ? (
-        <h1>No channels found</h1>
-      ) : (
+    <Paper>
+      <Container>
         <div>
-          {channels.map((channel) => (
-            <div key={channel.id}>{channel.name}</div>
-          ))}
+          <div>ChannelBrowser</div>
+          <br />
+          {!channels ? (
+            <h1>No channels found</h1>
+          ) : (
+            <ChannelList channels={channels} />
+          )}
         </div>
-      )}
-      <br />
-      <h1>Channel Image & description</h1>
-      <div>
-        {!channels ? (
-          <h1>No channels found</h1>
-        ) : (
-          <div>
-            {channels.map((channel) => (
-              <div key={channel.id}>
-                {channel.image} <br />
-                {channel.description}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </div>
+      </Container>
+    </Paper>
   );
 };
 

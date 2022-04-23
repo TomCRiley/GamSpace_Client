@@ -35,6 +35,7 @@ export const allChannelPosts = async (channelid) => {
   };
 
   const { data } = await axios.request(options);
+  return data;
 };
 
 export const getChannel = async (channelid) => {
@@ -44,6 +45,7 @@ export const getChannel = async (channelid) => {
   };
 
   const { data } = await axios.request(options);
+  return data;
 };
 
 export const getChannelByName = async (urlName) => {
@@ -53,4 +55,5 @@ export const getChannelByName = async (urlName) => {
   };
 
   const { data } = await axios.request(options);
+  return data;
 };

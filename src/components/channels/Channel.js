@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { makeStyles } from '@mui/styles';
 import { Grid, Paper, Box, Typography } from '@mui/material';
@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
 
 const Channel = () => {
   const classes = useStyles();
-  const { urlName } = useParams();
+  const { id } = useParams();
 
   const [allPosts, setAllPosts] = React.useState([]);
   const [channel, setChannel] = React.useState({});
@@ -31,7 +31,7 @@ const Channel = () => {
       // setAllPosts(allPosts);
 
       // Set channel data Tom!
-      const channelData = await getChannelByName(urlName);
+      const channelData = await getChannel(id);
       if (channelData) {
         setChannel(channelData);
       }
@@ -42,28 +42,34 @@ const Channel = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2}>
-        <Box
-          class={classes.heroImage}
-          style={{ backgroundImage: `url(${channel.image})` }}
-        >
-          <Box class={classes.heroText}>
-            <Typography variant='h2' component='div'>
-              {channel.name}
-            </Typography>
-          </Box>
-        </Box>
-        <Grid item xs>
-          <Item>Small Dialogue Area</Item>
-        </Grid>
+      <Grid container spacing={12}>
+        {channel && (
+          <Grid item xs={12}>
+            <Box
+              className={classes.heroImage}
+              style={{ backgroundImage: `url(${channel.image})` }}
+            >
+              <Box className={classes.heroText}>
+                <Typography variant='h2' component='div'>
+                  {channel.name}
+                </Typography>
+              </Box>
+            </Box>
+            <Grid item xs>
+              <Typography variant='body1' color='initial'>
+                {channel.description}
+              </Typography>
+            </Grid>
+          </Grid>
+        )}
         <Grid item xs={6}>
-          <Item>
+          <Box>
             <div>{allPosts ? <p>{`${allPosts.Channel}`}</p> : null}</div> GET
             ALL POSTS ONE CHANNEL
-          </Item>
+          </Box>
         </Grid>
         <Grid item xs={4}>
-          <Item>xs=4</Item>
+          <Box>xs=4</Box>
         </Grid>
       </Grid>
     </Box>
