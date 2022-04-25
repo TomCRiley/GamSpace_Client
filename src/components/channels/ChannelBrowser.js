@@ -34,7 +34,3 @@ const ChannelBrowser = () => {
 };
 
 export default ChannelBrowser;
-
-{
-  /* https://mui.com/material-ui/react-pagination/ */
-}

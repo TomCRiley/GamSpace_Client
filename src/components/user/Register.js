@@ -20,6 +20,21 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
+const styles = {
+  '&.MuiButton-root': {
+    marginTop: '7px',
+  },
+  '&.MuiButton-text': {
+    color: 'grey',
+  },
+  '&.MuiButton-contained': {
+    color: 'white',
+  },
+  '&.MuiButton-outlined': {
+    // paddingRight: '30px',
+  },
+};
+
 const Register = () => {
   const classes = useStyles();
 
@@ -123,97 +138,104 @@ const Register = () => {
   }
 
   return (
-    <Container maxWidth='lg'>
-      <Paper elavation={3}>
-        <Grid container item xs={12}>
-          <Grid item xs={12}>
-            <Typography variant='h1' className={classes.title}>
-              Sign Up
-            </Typography>
-          </Grid>
-          <Grid container item xs={12}>
-            <form>
-              <Grid item xs={6}>
-                <TextField
-                  label='UserName'
-                  id='username'
-                  onChange={handleUserNameChange}
-                  type='text'
-                  variant='outlined'
-                  value={userName}
-                  required={true}
-                />
-                <TextField
-                  label='Email'
-                  id='email'
-                  onChange={handleEmail}
-                  type='text'
-                  variant='outlined'
-                  value={email}
-                  required={true}
-                />
-                <TextField
-                  label='Password'
-                  id='password'
-                  onChange={handlePassword}
-                  type='password'
-                  variant='outlined'
-                  value={password}
-                  required={true}
-                  error={error ? true : false}
-                  helperText={error}
-                />
-                <TextField
-                  label='Password Confirmation'
-                  id='password_confirmation'
-                  onChange={handlePasswordConf}
-                  type='password'
-                  variant='outlined'
-                  value={passwordConf}
-                  required={true}
-                  error={error ? true : false}
-                  helperText={error}
-                />
-                <TextField
-                  label='First Name'
-                  id='first_name'
-                  onChange={handleFirst}
-                  type='text'
-                  variant='outlined'
-                  value={first}
-                  required={true}
-                />
-                <TextField
-                  label='Last Name'
-                  id='last_name'
-                  onChange={handleLast}
-                  type='text'
-                  variant='outlined'
-                  value={last}
-                  required={true}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <Container>
-                  {imageDisplay && <img src={imageDisplay} />}
-                  <Box>
-                    <Button onClick={handleUpload}>
-                      cloudinary image uploader
-                    </Button>
-                  </Box>
-                </Container>
-              </Grid>
-              <Button onClick={handleSubmit}>Submit</Button>
-              {submitError && <Typography>{submitError}</Typography>}
-              {/* Submit should send the user information to the api using getUserInfo() */}
-            </form>
-          </Grid>
-          <Box>{/* <img src={imageDisplay} /> */}</Box>
-          <Grid item xs={12}>
-            Find us on
-          </Grid>
+    <Container center maxWidth='lg'>
+      <Grid
+        container
+        center
+        spacing={5}
+        direction='row'
+        justifyContent='center'
+        alignItems='center'
+        alignContent='center'
+        wrap='wrap'
+        item
+        xs={12}
+      >
+        <Grid item xs={12}>
+          <Typography variant='h1' className={classes.title}>
+            Sign Up
+          </Typography>
         </Grid>
-      </Paper>
+        <Grid container item xs={12}>
+          <form>
+            <Grid item xs={6}>
+              <TextField
+                label='UserName'
+                id='username'
+                onChange={handleUserNameChange}
+                type='text'
+                variant='outlined'
+                value={userName}
+                required={true}
+              />
+              <TextField
+                label='Email'
+                id='email'
+                onChange={handleEmail}
+                type='text'
+                variant='outlined'
+                value={email}
+                required={true}
+              />
+              <TextField
+                label='Password'
+                id='password'
+                onChange={handlePassword}
+                type='password'
+                variant='outlined'
+                value={password}
+                required={true}
+                error={error ? true : false}
+                helperText={error}
+              />
+              <TextField
+                label='Password Confirmation'
+                id='password_confirmation'
+                onChange={handlePasswordConf}
+                type='password'
+                variant='outlined'
+                value={passwordConf}
+                required={true}
+                error={error ? true : false}
+                helperText={error}
+              />
+              <TextField
+                label='First Name'
+                id='first_name'
+                onChange={handleFirst}
+                type='text'
+                variant='outlined'
+                value={first}
+                required={true}
+              />
+              <TextField
+                label='Last Name'
+                id='last_name'
+                onChange={handleLast}
+                type='text'
+                variant='outlined'
+                value={last}
+                required={true}
+              />
+            </Grid>
+
+            <Grid item xs={6}>
+              {imageDisplay && <img src={imageDisplay} />}
+
+              <Button sx={styles} variant='outlined' onClick={handleUpload}>
+                Upload an Avatar
+              </Button>
+            </Grid>
+            <Button sx={styles} variant='contained' onClick={handleSubmit}>
+              Submit
+            </Button>
+            {submitError && <Typography>{submitError}</Typography>}
+          </form>
+        </Grid>
+        {/* <Box>
+            <img src={imageDisplay} />
+          </Box> */}
+      </Grid>
     </Container>
   );
 };

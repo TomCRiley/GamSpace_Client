@@ -30,7 +30,6 @@ const Channel = () => {
       // const allPosts = await allChannelPosts(channelName);
       // setAllPosts(allPosts);
 
-      // Set channel data Tom!
       const channelData = await getChannel(id);
       if (channelData) {
         setChannel(channelData);

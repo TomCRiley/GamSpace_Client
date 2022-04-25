@@ -132,7 +132,7 @@ const Navbar = () => {
               typography: { fontStyle: 'italic' },
             }}
           >
-            GameSpace
+            Gamr.io
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -180,9 +180,13 @@ const Navbar = () => {
             variant='h6'
             noWrap
             component='div'
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            sx={{
+              flexGrow: 1,
+              display: { xs: 'flex', md: 'none' },
+              typography: { fontStyle: 'italic' },
+            }}
           >
-            GameSpace
+            Gamr.io
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
