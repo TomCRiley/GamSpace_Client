@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 function ChannelCard({ channel }) {
   return (
-    <Card sx={{ maxWidth: 150 }} key={channel.id}>
+    <Card sx={{ maxWidth: 200 }} key={channel.id}>
       <CardMedia
         component='img'
         alt={channel.name}
@@ -23,10 +23,6 @@ function ChannelCard({ channel }) {
           {channel.description}
         </Typography>
       </CardContent>
-      {/* <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions> */}
     </Card>
   );
 }

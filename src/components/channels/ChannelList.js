@@ -5,12 +5,12 @@ import ChannelCard from './ChannelCard';
 
 function ChannelList({ channels }) {
   return (
-    <Grid container item xs={12}>
+    <Grid container item xs={10}>
       {channels &&
         channels.length > 0 &&
         channels.map((channel) => (
           <Link href={`/channel/${channel.id}`} key={channel.id}>
-            <ChannelCard channel={channel} />
+            <ChannelCard spacing={5} channel={channel} />
           </Link>
         ))}
     </Grid>
