@@ -5,46 +5,46 @@ import { getLoggedInUserId } from '../../UserAuth/auth.js';
 import { Container, Paper, Grid, Card, Typography } from '@mui/material';
 import ChannelCard from '../channels/ChannelCard.js';
 import { makeStyles } from '@mui/styles';
+
 // import getUserChannels from '../../api/channels_api.js';
 
-// const useStyles = makeStyles(() => ({
-//   root: {
-//     width: 316,
-//     alignItems: 'center',
-//   },
-//   heroImage: {
-//     minHeight: 150,
-//     height: 300,
-//     backgroundSize: 'Cover',
-//     borderRadius: 20,
-//     margin: 20,
-//     marginRight: '9%',
-//   },
-//   heroText: {
-//     marginBottom: 12,
-//     padding: 40,
-//     color: '#fff',
-//   },
-//   descBox: {
-//     backgroundColor: '#E6E6E6',
-//     borderRadius: 10,
-//     padding: 20,
-//     paddingBottom: 60,
-//   },
-//   channelDescTitle: {
-//     fontStyle: 'italic',
-//     fontSize: 35,
-//     marginBottom: 15,
-//   },
-//   postColumn: {
-//     marginLeft: 30,
-//   },
-// }));
+const useStyles = makeStyles(() => ({
+  profileImage: {
+    width: 350,
+    alignItems: 'center',
+    borderRadius: 20,
+    marginTop: 50,
+  },
+  username: {
+    marginTop: 15,
+    marginBottom: 5,
+  },
+  handle: {
+    fontStyle: 'italic',
+    color: 'lightGrey',
+  },
+  // descBox: {
+  //   backgroundColor: '#E6E6E6',
+  //   borderRadius: 10,
+  //   padding: 20,
+  //   paddingBottom: 60,
+  // },
+  // channelDescTitle: {
+  //   fontStyle: 'italic',
+  //   fontSize: 35,
+  //   marginBottom: 15,
+  // },
+  // postColumn: {
+  //   marginLeft: 30,
+  // },
+}));
 
 const UserProfile = () => {
   const [channels, setChannels] = React.useState([]);
   const [posts, setUserPosts] = React.useState([]);
   const [user, setUser] = React.useState();
+
+  const classes = useStyles();
 
   React.useEffect(() => {
     const getData = async () => {
@@ -70,16 +70,31 @@ const UserProfile = () => {
         wrap='wrap'
       >
         {user && (
-          <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <img src={user.image} alt='image' />
+          <Grid item>
+            <Grid item xs={10}>
+              <img
+                className={classes.profileImage}
+                src={user.image}
+                alt='image'
+              />
             </Grid>
-            <Grid item xs={6}>
-              <Typography variant='body1' color='initial'>
+            <Grid item xs={12}>
+              <Typography
+                className={classes.username}
+                variant='h3'
+                color='initial'
+              >
                 {`${user.first_name} ${user.last_name}`}
               </Typography>
-              <Typography variant='body1' color='initial'>
+              <Typography
+                className={classes.handle}
+                variant='body1'
+                color='initial'
+              >
                 {user.username}
+              </Typography>
+              <Typography variant='body1' color='initial'>
+                {user.bio}
               </Typography>
             </Grid>
           </Grid>
