@@ -32,10 +32,10 @@ const home = () => {
         <Grid item xs>
           <Item>Small Dialogue Area</Item>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={8}>
           <ChannelList channels={channels} />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={2}>
           <Item>xs=4</Item>
         </Grid>
       </Grid>

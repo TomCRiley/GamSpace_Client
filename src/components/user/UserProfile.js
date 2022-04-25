@@ -4,9 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import { getLoggedInUserId } from '../../UserAuth/auth.js';
 import { Container, Paper, Grid, Card, Typography } from '@mui/material';
 import ChannelCard from '../channels/ChannelCard.js';
+import ChannelList from '../channels/ChannelList.js';
 import { makeStyles } from '@mui/styles';
 
-// import getUserChannels from '../../api/channels_api.js';
+import { getUserChannels } from '../../api/channels_api.js';
 
 const useStyles = makeStyles(() => ({
   profileImage: {
@@ -23,20 +24,6 @@ const useStyles = makeStyles(() => ({
     fontStyle: 'italic',
     color: 'lightGrey',
   },
-  // descBox: {
-  //   backgroundColor: '#E6E6E6',
-  //   borderRadius: 10,
-  //   padding: 20,
-  //   paddingBottom: 60,
-  // },
-  // channelDescTitle: {
-  //   fontStyle: 'italic',
-  //   fontSize: 35,
-  //   marginBottom: 15,
-  // },
-  // postColumn: {
-  //   marginLeft: 30,
-  // },
 }));
 
 const UserProfile = () => {
@@ -52,7 +39,7 @@ const UserProfile = () => {
       // const posts = await allUserPosts();
       //SetUserPosts(posts);
       setUser(user);
-      // setChannels(getUserChannels());
+      setChannels(getUserChannels());
     };
 
     getData();
@@ -101,13 +88,9 @@ const UserProfile = () => {
         )}
       </Grid>
 
-      <Paper>
-        {channels &&
-          channels.length > 0 &&
-          channels.Map((channel) => {
-            <ChannelCard channel={channel} />;
-          })}
-      </Paper>
+      <Grid>
+        {channels && channels.length > 0 && <ChannelList channels={channels} />}
+      </Grid>
     </Container>
   );
 };

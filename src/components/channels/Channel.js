@@ -3,8 +3,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { makeStyles } from '@mui/styles';
 import { Grid, Paper, Box, Typography } from '@mui/material';
-
-import { allChannelPosts, getChannel } from '../../api/channels_api.js';
+import PostCard from '../posts/PostCard.js';
+import {
+  allChannelPosts,
+  getChannel,
+  getChannelByName,
+} from '../../api/channels_api.js';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -49,12 +53,12 @@ const Channel = () => {
 
   React.useEffect(() => {
     const getData = async () => {
-      // const allPosts = await allChannelPosts(channelName);
-      // setAllPosts(allPosts);
-
-      const channelData = await getChannel(id);
+      const channelData = await getChannelByName(id);
       if (channelData) {
         setChannel(channelData);
+
+        const allPosts = await allChannelPosts(channelData.id);
+        setAllPosts(allPosts);
       }
     };
 
@@ -90,8 +94,12 @@ const Channel = () => {
               Posts
             </Typography>
             <Box>
-              <div>{allPosts ? <p>{`${allPosts.Channel}`}</p> : null}</div> GET
-              ALL POSTS ONE CHANNEL
+              <div>
+                {allPosts &&
+                  allPosts.map((post) => (
+                    <PostCard post={post} key={post.id} />
+                  ))}
+              </div>
             </Box>
           </Box>
         </Grid>
@@ -102,7 +110,7 @@ const Channel = () => {
               variant='h3'
               color='initial'
             >
-              Channel Description
+              About {channel.name}
             </Typography>
             <Typography variant='body1' color='initial'>
               {channel.description}
@@ -115,6 +123,3 @@ const Channel = () => {
 };
 
 export default Channel;
-
-// https://codesandbox.io/s/ttk5tj?file=/demo.js:541-552
-// https://mui.com/material-ui/react-grid/#how-it-works

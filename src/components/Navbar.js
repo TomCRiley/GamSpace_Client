@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-// import useStyles from '../styles/styles.js';
 
-// import { hatWizard } from '../assets/icons/hat-wizard.svg';
 import FaceTwoToneIcon from '@mui/icons-material/FaceTwoTone';
 import MenuIcon from '@mui/icons-material/Menu';
 import { getUserProfile } from '../api/auth_api';
@@ -118,10 +116,7 @@ const Navbar = () => {
   return (
     <AppBar position='static'>
       <Container maxWidth='xl'>
-        <Toolbar
-        // className={classes.toolBar}
-        // sx={{ palette: { primary: 'green' } }}
-        >
+        <Toolbar>
           <Typography
             variant='h6'
             noWrap
@@ -206,10 +201,7 @@ const Navbar = () => {
             <Tooltip title='Open settings'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
                 {user ? (
-                  <Avatar
-                    alt='Profile Picture'
-                    src={'https://mui.com/static/images/avatar/1.jpg'}
-                  />
+                  <Avatar alt='Profile Picture' src={user.image} />
                 ) : (
                   <FaceTwoToneIcon />
                 )}

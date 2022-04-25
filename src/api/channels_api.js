@@ -28,20 +28,30 @@ export const createChannel = async (newChannel) => {
   return data;
 };
 
-export const allChannelPosts = async (channelid) => {
+export const allChannelPosts = async (channelId) => {
   const options = {
     method: 'GET',
-    url: `${base}/channel/posts/?channel=${channelid}`,
+    url: `${baseurl}/channel/${channelId}/posts`,
   };
 
   const { data } = await axios.request(options);
   return data;
 };
 
-export const getChannel = async (channelid) => {
+export const getChannel = async (channelId) => {
   const options = {
     method: 'GET',
-    url: `${baseurl}/channel/${channelid}`,
+    url: `${baseurl}/channel/${channelId}`,
+  };
+
+  const { data } = await axios.request(options);
+  return data;
+};
+
+export const getUserChannels = async (channelId) => {
+  const options = {
+    method: 'GET',
+    url: `${baseurl}/channel/${channelId}`,
   };
 
   const { data } = await axios.request(options);

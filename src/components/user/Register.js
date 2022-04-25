@@ -18,6 +18,10 @@ const useStyles = makeStyles(() => ({
     color: '#008080',
     alignItems: 'center',
   },
+  // form: {
+  //   display: 'flex',
+  //   justifyContent: 'center',
+  // },
 }));
 
 const styles = {
@@ -89,7 +93,7 @@ const Register = () => {
       password_confirmation: passwordConf,
       first_name: first,
       last_name: last,
-      image: imageDisplay,
+      image: imageDisplay ?? null,
     };
     // fields go in above
     return user;
@@ -98,7 +102,8 @@ const Register = () => {
   const handleSubmit = async () => {
     setSubmitError();
     if (!error) {
-      const response = await registerUser(getUserInfo());
+      const user = getUserInfo();
+      const response = await registerUser(user);
       if (response.status === 200) {
         navigate('/login', { replace: true });
       } else {
@@ -138,86 +143,72 @@ const Register = () => {
   }
 
   return (
-    <Container center maxWidth='lg'>
-      <Grid
-        container
-        center
-        spacing={5}
-        direction='row'
-        justifyContent='center'
-        alignItems='center'
-        alignContent='center'
-        wrap='wrap'
-        item
-        xs={12}
-      >
+    <Container>
+      <Grid container item xs={12}>
         <Grid item xs={12}>
           <Typography variant='h1' className={classes.title}>
             Sign Up
           </Typography>
         </Grid>
-        <Grid container item xs={12}>
-          <form>
-            <Grid item xs={6}>
-              <TextField
-                label='UserName'
-                id='username'
-                onChange={handleUserNameChange}
-                type='text'
-                variant='outlined'
-                value={userName}
-                required={true}
-              />
-              <TextField
-                label='Email'
-                id='email'
-                onChange={handleEmail}
-                type='text'
-                variant='outlined'
-                value={email}
-                required={true}
-              />
-              <TextField
-                label='Password'
-                id='password'
-                onChange={handlePassword}
-                type='password'
-                variant='outlined'
-                value={password}
-                required={true}
-                error={error ? true : false}
-                helperText={error}
-              />
-              <TextField
-                label='Password Confirmation'
-                id='password_confirmation'
-                onChange={handlePasswordConf}
-                type='password'
-                variant='outlined'
-                value={passwordConf}
-                required={true}
-                error={error ? true : false}
-                helperText={error}
-              />
-              <TextField
-                label='First Name'
-                id='first_name'
-                onChange={handleFirst}
-                type='text'
-                variant='outlined'
-                value={first}
-                required={true}
-              />
-              <TextField
-                label='Last Name'
-                id='last_name'
-                onChange={handleLast}
-                type='text'
-                variant='outlined'
-                value={last}
-                required={true}
-              />
-            </Grid>
+
+        <form>
+          <Grid className={classes.form} item xs={6}>
+            <TextField
+              label='UserName'
+              id='username'
+              onChange={handleUserNameChange}
+              type='text'
+              variant='outlined'
+              value={userName}
+              required={true}
+            />
+            <TextField
+              label='Email'
+              id='email'
+              onChange={handleEmail}
+              type='text'
+              variant='outlined'
+              value={email}
+              required={true}
+            />
+            <TextField
+              label='Password'
+              id='password'
+              onChange={handlePassword}
+              type='password'
+              variant='outlined'
+              value={password}
+              required={true}
+              error={error ? true : false}
+            />
+            <TextField
+              label='Password Confirmation'
+              id='password_confirmation'
+              onChange={handlePasswordConf}
+              type='password'
+              variant='outlined'
+              value={passwordConf}
+              required={true}
+              error={error ? true : false}
+            />
+            <TextField
+              label='First Name'
+              id='first_name'
+              onChange={handleFirst}
+              type='text'
+              variant='outlined'
+              value={first}
+              required={true}
+            />
+            <TextField
+              label='Last Name'
+              id='last_name'
+              onChange={handleLast}
+              type='text'
+              variant='outlined'
+              value={last}
+              required={true}
+            />
 
             <Grid item xs={6}>
               {imageDisplay && <img src={imageDisplay} />}
@@ -230,8 +221,9 @@ const Register = () => {
               Submit
             </Button>
             {submitError && <Typography>{submitError}</Typography>}
-          </form>
-        </Grid>
+          </Grid>
+        </form>
+
         {/* <Box>
             <img src={imageDisplay} />
           </Box> */}

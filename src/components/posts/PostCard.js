@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
-// import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
@@ -10,10 +9,11 @@ import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles(() => ({
   cardStyle: {
     height: 'auto',
-    minHeight: '350px',
+    minHeight: '250px',
     maxHeight: '350px',
-    width: 'auto',
+    width: '100%',
     maxWidth: '350px',
+    marginBottom: '20px',
   },
   username: {
     marginTop: 15,
@@ -25,27 +25,21 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function ChannelCard({ channel }) {
+function PostCard({ post }) {
   const classes = useStyles();
 
   return (
-    <Card sx={{ maxWidth: 200 }} key={channel.id} className={classes.cardStyle}>
-      <CardMedia
-        component='img'
-        alt={channel.name}
-        height='65'
-        image={channel.image}
-      />
+    <Card sx={{ maxWidth: 200 }} key={post.id} className={classes.cardStyle}>
       <CardContent>
         <Typography gutterBottom variant='h5' component='div'>
-          {channel.name}
+          {post.title}
         </Typography>
         <Typography variant='body2' color='text.secondary'>
-          {channel.description}
+          {post.text}
         </Typography>
       </CardContent>
     </Card>
   );
 }
 
-export default ChannelCard;
+export default PostCard;
