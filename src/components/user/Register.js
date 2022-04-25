@@ -32,8 +32,9 @@ const Register = () => {
   const [error, setError] = useState();
   const [submitError, setSubmitError] = useState('');
 
+  const [imageDisplay, setImageDisplay] = useState();
+
   let navigate = useNavigate();
-  // const [imageDisplay, updateImageDisplay] = useState();
 
   const validatePwd = (pwd, conf) => {
     if (pwd !== conf) {
@@ -73,6 +74,7 @@ const Register = () => {
       password_confirmation: passwordConf,
       first_name: first,
       last_name: last,
+      image: imageDisplay,
     };
     // fields go in above
     return user;
@@ -90,39 +92,35 @@ const Register = () => {
     }
   };
 
-  // function handleUpload() {
-  //   window.cloudinary
-  //     .createUploadWidget(
-  //       {
-  //         cloudName: `${process.env.cloudName}`,
-  //         uploadPreset: `${process.env.default}`,
-  //         cropping: true,
-  //         croppingAspectRatio: 1,
-  //         multiple: false,
-  //         maxImageFileSize: 5500000,
-  //         gravity: 'face',
-  //         croppingShowBackButton: false,
-  //         showPoweredBy: false,
-  //       },
-  //       (err, result) => {
-  //         if (result.event !== 'success') {
-  //           return;
-  //         }
-  //         updateFormData({
-  //           ...formData,
-  //           profileImage: result.info.secure_url,
-  //         });
-  //         updateImageDisplay(result.info.secure_url);
-  //         console.log(
-  //           'ALERT This is the uploaded picture:',
-  //           result.info.secure_url,
-  //           formData,
-  //           imageDisplay
-  //         );
-  //       }
-  //     )
-  //     .open();
-  // }
+  function handleUpload() {
+    window.cloudinary
+      .createUploadWidget(
+        {
+          cloudName: `${process.env.cloudName}`,
+          uploadPreset: `${process.env.profilePicturePreset}`,
+          maxImageFileSize: 5500000,
+          showPoweredBy: false,
+        },
+        (err, result) => {
+          if (result.event !== 'success') {
+            return;
+          }
+          setImageDisplay(result.info.secure_url);
+          updateFormData({
+            ...formData,
+            profileImage: result.info.secure_url,
+          });
+          updateImageDisplay(result.info.secure_url);
+          console.log(
+            'ALERT This is the uploaded picture:',
+            result.info.secure_url,
+            formData,
+            imageDisplay
+          );
+        }
+      )
+      .open();
+  }
 
   return (
     <Container maxWidth='lg'>
@@ -197,12 +195,12 @@ const Register = () => {
               </Grid>
               <Grid item xs={6}>
                 <Container>
-                  {/* {imageDisplay && <img src={imageDisplay} />} */}
-                  {/* <Box>
+                  {imageDisplay && <img src={imageDisplay} />}
+                  <Box>
                     <Button onClick={handleUpload}>
                       cloudinary image uploader
                     </Button>
-                  </Box> */}
+                  </Box>
                 </Container>
               </Grid>
               <Button onClick={handleSubmit}>Submit</Button>
