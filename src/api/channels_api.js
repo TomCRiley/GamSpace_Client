@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const baseurl = 'http://localhost:8000';
+// const baseurl = 'https://gamrapi.herokuapp.com';
 
 export const getChannels = async (getChannels) => {
   const options = {
