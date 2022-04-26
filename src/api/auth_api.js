@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseurl = 'http://localhost:8000';
+const baseurl = 'https://gamrapi.herokuapp.com';
 
 // export const register = async();
 export const registerUser = async (user) => {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseurl = 'http://localhost:8000';
+const baseurl = 'https://gamrapi.herokuapp.com';
 
 export const createPost = async (id, post) => {
   const options = {
