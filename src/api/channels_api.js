@@ -23,7 +23,6 @@ export const createChannel = async (newChannel) => {
       authorization: `Bearer ${window.sessionStorage.getItem('token')}`,
     },
   };
-  // map this function to a button to create a new channel?
   const { data } = await axios.request(options);
 
   return data;

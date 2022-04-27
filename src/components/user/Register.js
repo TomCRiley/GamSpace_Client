@@ -18,10 +18,6 @@ const useStyles = makeStyles(() => ({
     color: '#008080',
     alignItems: 'center',
   },
-  // form: {
-  //   display: 'flex',
-  //   justifyContent: 'center',
-  // },
 }));
 
 const styles = {
@@ -95,7 +91,7 @@ const Register = () => {
       last_name: last,
       image: imageDisplay ?? null,
     };
-    // fields go in above
+
     return user;
   };
 
