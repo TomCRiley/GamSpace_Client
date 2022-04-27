@@ -27,7 +27,6 @@ const App = () => (
         <Route path='/login' element={<Login />} />
         <Route path='/profile' element={<UserProfile />} />
       </Routes>
-      {/* <Footer /> */}
     </ThemeProvider>
   </BrowserRouter>
 );
