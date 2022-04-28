@@ -10,7 +10,7 @@ import Channel from '../components/channels/Channel';
 import Login from '../components/user/Login';
 import Register from '../components/user/Register';
 import UserProfile from '../components/user/UserProfile';
-// import Footer from '../components/Footer';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme();
