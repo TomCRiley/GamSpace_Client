@@ -1,6 +1,6 @@
 # ReadMe
 
-# 🕹GameSpace🎮
+# 🕹GameSpace Client🎮
 This was a 7 day solo project - I deployed this website using Heroku ➡️[HERE](www.gamespace-tr.netlify.app)⬅️. The free servers on Heroku sleep when they are not in use, so please allow a few seconds for them to wake up! 😴
 
 You can find the back end Python and Django repo ➡️[HERE](https://github.com/TomCRiley/GamrAPI)⬅️.
