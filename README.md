@@ -114,11 +114,11 @@ class UrlNameChannel(RetrieveAPIView):
 
 In the python Channels app / views.py, I filtered for the urlname field and either returned a 404 not found or the data for the Channel from my `ChannelSerializer`.
 
-Lastly for the backend, the urlname field is passed to the urls.py component which I aimed to keep as RESTful as possible. `path(‘channel/<str:urlname>/‘, UrlNameChannel.as_view())` .
+Lastly for the backend, the urlname field is passed to the urls.py component which I aimed to keep as RESTful as possible. `path(‘channel/<str:urlname>/‘, UrlNameChannel.as_view())` 
 
 <img width="711" alt="Screenshot 2022-05-06 at 7 00 46 pm" src="https://user-images.githubusercontent.com/97558359/168838308-5015a905-607d-4859-9f98-2c40a8e76a93.png">
 
-Moving to the front end I used Axios to control all the endpoints. Here, I am pointing the server to the correct URL .
+Moving to the front end I used Axios to control all the endpoints. Here, I am pointing the server to the correct URL 
 
 ```javascript
 // const baseurl = 'http://localhost:8000';
@@ -174,7 +174,7 @@ Some other features I’d like to include are different media formats for users 
 ## Key Learnings
 Time management is key, but I had learnt that in my first few projects. So what slowed me down on the client side this time? I had plenty of time and finished my Django and Python backend quite early in the project week.
 
-CSS frameworks are no joke, they have their own syntax and require a good amount of time and investment to fully understand how to implement. Though MUI has many benefits, some of which I managed to include like modal dropdown menus and ‘card’ interfaces, it also has a lot of documentation. It might’ve been a better idea to stick to the framework I’d been working in for a few months [Bulma.io](www.bulma.io) or to rely more heavily on vanilla CSS and SASS.
+CSS frameworks are no joke, they have their own syntax and require a good amount of time and investment to fully understand how to implement. Though MUI has many benefits, some of which I managed to include like modal dropdown menus and ‘card’ interfaces, it also has a lot of documentation. It might’ve been a better idea to stick to the framework I’d been working in for a few months (Bulma.io) or to rely more heavily on vanilla CSS and SASS.
 
 I feel I strengthened my understanding of React and JavaScript greatly, and surprised myself with how I managed to implement a brand new technology (to me) like Python and Django so quickly. 
 
